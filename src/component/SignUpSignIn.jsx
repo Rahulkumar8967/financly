@@ -7,6 +7,9 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
+// eslint-disable-next-line no-unused-vars
+import { signInWithRedirect } from "firebase/auth";
+
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import Header from "./Header/Header";
 import { toast } from "react-toastify";
@@ -81,7 +84,6 @@ const SignUpSignIn = () => {
     setLoading(false);
   };
 
-
   const handleGoogleSignIn = async () => {
     setLoading(true);
     try {
@@ -94,7 +96,6 @@ const SignUpSignIn = () => {
     }
     setLoading(false);
   };
-
 
   return (
     <>
@@ -115,7 +116,6 @@ const SignUpSignIn = () => {
             className="space-y-4"
           >
             {!isLogin && (
-              
               <input
                 type="text"
                 placeholder="Enter your name"
@@ -158,7 +158,7 @@ const SignUpSignIn = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none transition duration-300"
+              className="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none transition duration-300 cursor-pointer"
             >
               {loading ? "Loading..." : isLogin ? "Log In" : "Sign Up"}
             </button>
@@ -172,7 +172,7 @@ const SignUpSignIn = () => {
           <button
             disabled={loading}
             onClick={handleGoogleSignIn}
-            className="w-full py-3 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 focus:outline-none transition duration-300"
+            className="w-full py-3 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 focus:outline-none transition duration-300 cursor-pointer"
           >
             {loading ? "Loading..." : "Continue with Google"}
           </button>

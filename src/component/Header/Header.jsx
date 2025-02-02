@@ -24,7 +24,7 @@ function Header() {
       {user && (
         <button
           onClick={logout}
-          className="flex items-center text-white text-base font-medium hover:text-gray-200 transition duration-300"
+          className="flex items-center text-white text-base font-medium hover:text-gray-200 transition duration-300 cursor-pointer"
         >
           <img
             src={user.photoURL || userSvg}
