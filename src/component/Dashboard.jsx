@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import { Line, Pie } from "@ant-design/charts";
@@ -12,11 +11,10 @@ import { useNavigate } from "react-router-dom";
 import { unparse } from "papaparse";
 import Loader from "./Loader/Loader";
 import NoTransactions from "./NoTransactions";
-
 import TransactionSearch from "./TransactionSearch";
 import AddIncomeModal from "./Modals/AddIncome";
 import AddExpenseModal from "./Modals/AddExpense";
-import Cards from "./cards";
+import Cards from "./Cards";
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
@@ -108,6 +106,14 @@ const Dashboard = () => {
     calculateBalance();
   }, [transactions]);
 
+  const resetBalance = () => {
+    setIncome(0);
+    setExpenses(0);
+    setCurrentBalance(0);
+    setTransactions([]); // Optionally reset transactions
+    toast.info("Balance Reset Successfully");
+  };
+
   async function addTransaction(transaction) {
     try {
       const docRef = await addDoc(
@@ -153,13 +159,14 @@ const Dashboard = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="container mx-auto py-8 px-4">
+        <div className="container mx-auto py-8 px-4 space-y-8">
           <Cards
             currentBalance={currentBalance}
             income={income}
             expenses={expenses}
             showExpenseModal={() => setIsExpenseModalVisible(true)}
             showIncomeModal={() => setIsIncomeModalVisible(true)}
+            reset={resetBalance} // Pass reset function to Cards
           />
 
           <AddExpenseModal
@@ -185,7 +192,7 @@ const Dashboard = () => {
               <div className="bg-white p-6 shadow-lg rounded-lg">
                 <h2 className="text-xl font-semibold mb-4">Total Spending</h2>
                 {spendingDataArray.length === 0 ? (
-                  <p className="text-gray-500">Seems like you haven&apos;t spent anything till now...</p>
+                  <p className="text-gray-500">Seems like you haven't spent anything till now...</p>
                 ) : (
                   <Pie data={spendingDataArray} angleField="value" colorField="category" />
                 )}

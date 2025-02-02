@@ -48,10 +48,10 @@ function Cards({
           Add Expense
         </button>
       </div>
-
     </div>
   );
 }
+
 Cards.propTypes = {
   currentBalance: PropTypes.number.isRequired,
   income: PropTypes.number.isRequired,
