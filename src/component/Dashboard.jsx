@@ -12,10 +12,11 @@ import { useNavigate } from "react-router-dom";
 import { unparse } from "papaparse";
 import Loader from "./Loader/Loader";
 import NoTransactions from "./NoTransactions";
-import Cards from "./cards";
+
 import TransactionSearch from "./TransactionSearch";
 import AddIncomeModal from "./Modals/AddIncome";
 import AddExpenseModal from "./Modals/AddExpense";
+import Cards from "./cards";
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
